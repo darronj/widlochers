@@ -7,5 +7,5 @@
 .landingText {
   font-size: xxx-large;
   text-align: center;
-  color: 'white';
+  color: 'white' !important;
 }
