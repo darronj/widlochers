@@ -1,4 +1,4 @@
-import { Container, Title } from '@mantine/core';
+import { Container, Stack, Title } from '@mantine/core';
 import Head from 'next/head';
 import { useSessionContext } from 'supertokens-auth-react/recipe/session';
 import ThirdPartyEmailPassword, {
@@ -6,6 +6,7 @@ import ThirdPartyEmailPassword, {
 } from 'supertokens-auth-react/recipe/thirdpartyemailpassword';
 import supertokensNode from 'supertokens-node';
 import Session from 'supertokens-node/recipe/session';
+import AppList from '../components/AppList/AppList';
 import WShell from '../components/Layout/Layout';
 import { backendConfig } from '../config/backendConfig';
 
@@ -58,6 +59,23 @@ function ProtectedPage({ userId }) {
     return null;
   }
 
+  const completedApps = [
+    { name: 'Coming Soon Page', finished: true },
+    { name: 'Protected Area', finished: true }
+  ];
+
+  const inProcessApps = [
+    { name: 'Content Management App', finished: false },
+    { name: 'Dynamic Pages (from CMS)', finished: false },
+    { name: 'Main Menu', finished: false }
+  ];
+
+  const comingApps = [
+    { name: 'Grocery Calculator', finished: false },
+    { name: 'SMS Integration', finished: false },
+    { name: 'Customer Notification', finished: false }
+  ];
+
   return (
     <>
       <Head>
@@ -67,6 +85,11 @@ function ProtectedPage({ userId }) {
       <WShell aside={undefined} footer={undefined} navbar={undefined}>
         <Container>
           <Title>Dashboard (where the apps go)</Title>
+          <Stack spacing="md">
+            <AppList title={'Complete'} items={completedApps} default_status={false} />
+            <AppList title={'In Process'} items={inProcessApps} default_status={false} />
+            <AppList title={'Coming Soon'} items={comingApps} default_status={false} />
+          </Stack>
         </Container>
       </WShell>
     </>
