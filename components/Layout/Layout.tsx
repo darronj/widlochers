@@ -1,6 +1,6 @@
 /* eslint-disable comma-dangle */
 import { NextLink } from '@mantine/next';
-import { MdSettings } from 'react-icons/md';
+import { MdDashboard, MdLogout, MdSettings } from 'react-icons/md';
 import { signOut } from 'supertokens-auth-react/recipe/thirdpartyemailpassword';
 
 import {
@@ -84,7 +84,7 @@ const WShell = ({ aside, children, footer, navbar, ...props }) => {
 
             <Box ml="sm" pt="xs">
               <Link href="/" passHref>
-                <Title>Widlocher&apos;s</Title>
+                <Title>Widl&#246;cher&apos;s</Title>
               </Link>
             </Box>
             <Group m={0} spacing="xs" position="center">
@@ -94,17 +94,28 @@ const WShell = ({ aside, children, footer, navbar, ...props }) => {
                   <Avatar size="sm" mt="xs" radius={10} alt="it's me" />
                 </Menu.Target>
                 <Menu.Dropdown>
-                  <Menu.Item component={NextLink} icon={<MdSettings />} href={'/admin'}>
-                    Settings
-                  </Menu.Item>
                   <Menu.Item
                     component={NextLink}
                     icon={<MdSettings />}
-                    onClick={onLogout}
                     href={'/admin'}
-                  >
-                    Log Out
-                  </Menu.Item>
+                    rightSection={<Text mx="xs">Settings</Text>}
+                    ml={5}
+                  ></Menu.Item>
+                  <Menu.Item
+                    component={NextLink}
+                    justify-content="start"
+                    icon={<MdDashboard />}
+                    rightSection={<Text mx="xs">Dashboard</Text>}
+                    href={'/dashboard'}
+                  ></Menu.Item>
+                  <Menu.Item
+                    component={NextLink}
+                    justify-content="start"
+                    icon={<MdLogout />}
+                    onClick={onLogout}
+                    rightSection={<Text mx="xs">Logout</Text>}
+                    href={'/'}
+                  ></Menu.Item>
                 </Menu.Dropdown>
               </Menu>
             </Group>

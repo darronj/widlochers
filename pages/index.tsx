@@ -7,7 +7,7 @@ export default function Home() {
       <Image
         className={styles.landingImage}
         src="/images/widlochers.svg"
-        alt="Widlochers.com"
+        alt="Widl&#246;chers.com"
         layout="fill"
         objectFit="cover"
         objectPosition="center"

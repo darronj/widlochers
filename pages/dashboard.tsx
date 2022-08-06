@@ -61,16 +61,12 @@ function ProtectedPage({ userId }) {
   return (
     <>
       <Head>
-        <title>Protected Page</title>
+        <title>Dashboard</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <WShell aside={undefined} footer={undefined} navbar={undefined}>
         <Container>
-          <Title>Settings Page (create roles, etc)</Title>
-          <Title order={2}>You are authenticated with SuperTokens!</Title>
-
-          {/* <Text size="lg">Access token payload:</Text>
-          <pre style={{maxWidth: '100vw', textOverflow: 'ellipsis'}}>{JSON.stringify(session.accessTokenPayload, null, 2)}</pre> */}
+          <Title>Dashboard (where the apps go)</Title>
         </Container>
       </WShell>
     </>

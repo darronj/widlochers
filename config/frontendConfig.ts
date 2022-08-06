@@ -14,7 +14,7 @@ export let frontendConfig = () => {
               // we are navigating back to where the user was before they authenticated
               return context.redirectToPath;
             }
-            return '/admin';
+            return '/dashboard';
           }
           return undefined;
         },
