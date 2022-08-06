@@ -67,7 +67,7 @@ function ProtectedPage({ userId }) {
       <WShell aside={undefined} footer={undefined} navbar={undefined}>
         <Container>
           <Title>
-            Welcome to <a href="https://widlochers.com">Widlocher's!</a>
+            Welcome to <a href="https://widlochers.com">Widlocher&apos;s!</a>
           </Title>
           <Title>You are authenticated with SuperTokens!</Title>
 

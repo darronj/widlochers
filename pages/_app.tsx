@@ -47,7 +47,7 @@ function App(props) {
   return (
     <>
       <Head>
-        <title>Widlocher's</title>
+        <title>Widlocher&apos;s</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>

@@ -84,7 +84,7 @@ const WShell = ({ aside, children, footer, navbar, ...props }) => {
 
             <Box ml="sm" pt="xs">
               <Link href="/" passHref>
-                <Title>Widlocher's</Title>
+                <Title>Widlocher&apos;s</Title>
               </Link>
             </Box>
             <Group m={0} spacing="xs" position="center">
