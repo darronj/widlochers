@@ -9,12 +9,28 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.0",
+    "@emotion/server": "^11.10.0",
+    "@mantine/core": "^5.0.3",
+    "@mantine/dates": "^5.0.3",
+    "@mantine/form": "^5.0.3",
+    "@mantine/hooks": "^5.0.3",
+    "@mantine/next": "^5.0.3",
+    "@mantine/notifications": "^5.0.3",
+    "cookies-next": "^2.1.1",
+    "dayjs": "^1.11.4",
     "next": "12.2.4",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-icons": "^4.4.0",
+    "stylis-plugin-rtl": "^2.1.1",
+    "supertokens-auth-react": "^0.24.0",
+    "supertokens-node": "^11.0.0"
   },
   "devDependencies": {
+    "@babel/core": "7.10.5",
     "eslint": "8.21.0",
-    "eslint-config-next": "12.2.4"
+    "eslint-config-next": "12.2.4",
+    "typescript": "3.9.5"
   }
 }

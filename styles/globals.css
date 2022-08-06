@@ -15,22 +15,4 @@ a {
   box-sizing: border-box;
 }
 
-h1.landingText {
-  color: white;
-  background: #1a1a1a;
-}
 
-body {
-  color: white;
-  background: black;
-}
-
-/* @media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
-} */
