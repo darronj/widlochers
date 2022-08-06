@@ -26,7 +26,9 @@ function AppList({ title, items, default_status }) {
         }
       >
         {items.map(({ name, finished }) => (
-          <List.Item icon={finished ? IconByStatus(finished) : null}>{name}</List.Item>
+          <List.Item key={name} icon={finished ? IconByStatus(finished) : null}>
+            {name}
+          </List.Item>
         ))}
       </List>
     </>
