@@ -57,7 +57,16 @@ function App(props) {
           emotionCache={rtlCache}
           theme={{
             colorScheme: colorScheme,
-            primaryColor: 'gray'
+            primaryColor: 'gray',
+            // components: {
+            //   Title: {
+            //     styles: (theme) => ({
+            //       root: {
+            //         color: theme.colorScheme === 'dark' ? 'white' : 'black'
+            //       }
+            //     })
+            //   }
+            // }
           }}
         >
           <SuperTokensWrapper>

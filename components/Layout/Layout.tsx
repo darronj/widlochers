@@ -26,6 +26,7 @@ import Link from 'next/link';
 import { PropsWithChildren, ReactElement, useState } from 'react';
 import { MdArrowUpward } from 'react-icons/md';
 import { ColorSchemeToggle } from '../ColorSchemeToggle/ColorSchemeToggle';
+import Brand from '../Brand/Brand';
 
 export interface WEVRShellProps extends PropsWithChildren {
   aside?: ReactElement;
@@ -61,7 +62,7 @@ const WShell = ({ aside, children, footer, navbar, ...props }) => {
         footer || (
           <Footer height={60} p="md">
             <Center>
-              <Text size="xs">&copy; 2022 BLOX, LLC</Text>
+              <Text size="xs">&copy; 2022 Widl&#246;cher&apos;s</Text>
             </Center>
           </Footer>
         )
@@ -82,11 +83,7 @@ const WShell = ({ aside, children, footer, navbar, ...props }) => {
               />
             </MediaQuery>
 
-            <Box ml="sm" pt="xs">
-              <Link href="/" passHref>
-                <Title>Widl&#246;cher&apos;s</Title>
-              </Link>
-            </Box>
+            <Brand/>
             <Group m={0} spacing="xs" position="center">
               <ColorSchemeToggle />
               <Menu>
