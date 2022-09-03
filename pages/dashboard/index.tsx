@@ -6,9 +6,9 @@ import ThirdPartyEmailPassword, {
 } from 'supertokens-auth-react/recipe/thirdpartyemailpassword';
 import supertokensNode from 'supertokens-node';
 import Session from 'supertokens-node/recipe/session';
-import AppList from '../components/AppList/AppList';
-import WShell from '../components/Layout/Layout';
-import { backendConfig } from '../config/backendConfig';
+import AppList from '../../components/AppList/AppList';
+import WShell from '../../components/Layout/Layout';
+import { backendConfig } from '../../config/backendConfig';
 
 export async function getServerSideProps(context) {
   // this runs on the backend, so we must call init on supertokens-node SDK

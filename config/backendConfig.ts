@@ -42,7 +42,6 @@ export let backendConfig = (): TypeInput => {
             return {
               ...originalImplementation,
               createNewSession: async function (input) {
-                console.log(input);
                 let userId = input.userId;
 
                 // This goes in the access token, and is availble to read on the frontend.

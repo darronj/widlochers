@@ -9,7 +9,6 @@ import '../styles/globals.css';
 
 import { getCookie, setCookie } from 'cookies-next';
 import { GetServerSidePropsContext } from 'next';
-import { rtlCache } from '../rtl-cache';
 
 if (typeof window !== 'undefined') {
   SuperTokensReact.init(SuperTokensConfig.frontendConfig());
@@ -54,10 +53,9 @@ function App(props) {
         <MantineProvider
           withGlobalStyles
           withNormalizeCSS
-          emotionCache={rtlCache}
           theme={{
             colorScheme: colorScheme,
-            primaryColor: 'gray',
+            primaryColor: 'gray'
             // components: {
             //   Title: {
             //     styles: (theme) => ({

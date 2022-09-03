@@ -7,7 +7,6 @@ import {
   Affix,
   AppShell,
   Avatar,
-  Box,
   Burger,
   Button,
   Center,
@@ -25,8 +24,8 @@ import { useWindowScroll } from '@mantine/hooks';
 import Link from 'next/link';
 import { PropsWithChildren, ReactElement, useState } from 'react';
 import { MdArrowUpward } from 'react-icons/md';
-import { ColorSchemeToggle } from '../ColorSchemeToggle/ColorSchemeToggle';
 import Brand from '../Brand/Brand';
+import { ColorSchemeToggle } from '../ColorSchemeToggle/ColorSchemeToggle';
 
 export interface WEVRShellProps extends PropsWithChildren {
   aside?: ReactElement;
@@ -83,8 +82,15 @@ const WShell = ({ aside, children, footer, navbar, ...props }) => {
               />
             </MediaQuery>
 
-            <Brand/>
+            <Brand />
             <Group m={0} spacing="xs" position="center">
+              <Link href="/dashboard/orders" passHref>
+                <a>
+                  <Title order={4} pt="xs">
+                    Orders
+                  </Title>
+                </a>
+              </Link>
               <ColorSchemeToggle />
               <Menu>
                 <Menu.Target>
