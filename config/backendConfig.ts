@@ -7,7 +7,7 @@ export let backendConfig = (): TypeInput => {
   return {
     framework: 'express',
     supertokens: {
-      connectionURI: process.env.SUPER_TOKENS_URL // 'http://157.230.203.183:3567'
+      connectionURI: process.env.SUPER_TOKENS_URL
     },
     appInfo,
     recipeList: [
