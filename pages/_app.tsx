@@ -1,22 +1,23 @@
 import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core';
+import { getCookie, setCookie } from 'cookies-next';
+import { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
+import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import SuperTokensReact, { SuperTokensWrapper } from 'supertokens-auth-react';
 import Session from 'supertokens-auth-react/recipe/session';
 import { redirectToAuth } from 'supertokens-auth-react/recipe/thirdpartyemailpassword';
 import * as SuperTokensConfig from '../config/frontendConfig';
 import '../styles/globals.css';
 
-import { getCookie, setCookie } from 'cookies-next';
-import { GetServerSidePropsContext } from 'next';
-
 if (typeof window !== 'undefined') {
   SuperTokensReact.init(SuperTokensConfig.frontendConfig());
 }
 
-function App(props) {
+function CustomApp(props) {
   const { Component, pageProps } = props;
-
+  const [queryClient] = useState(() => new QueryClient());
   const [colorScheme, setColorScheme] = useState<ColorScheme>(props.colorScheme || 'light');
   const toggleColorScheme = (value?: ColorScheme) => {
     const nextColorScheme = value || (colorScheme === 'dark' ? 'light' : 'dark');
@@ -45,40 +46,36 @@ function App(props) {
 
   return (
     <>
-      <Head>
-        <title>Widl&#246;cher&apos;s</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </Head>
-      <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-        <MantineProvider
-          withGlobalStyles
-          withNormalizeCSS
-          theme={{
-            colorScheme: colorScheme,
-            primaryColor: 'gray'
-            // components: {
-            //   Title: {
-            //     styles: (theme) => ({
-            //       root: {
-            //         color: theme.colorScheme === 'dark' ? 'white' : 'black'
-            //       }
-            //     })
-            //   }
-            // }
-          }}
-        >
-          <SuperTokensWrapper>
-            <Component {...pageProps} />
-          </SuperTokensWrapper>
-        </MantineProvider>
-      </ColorSchemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <Hydrate state={pageProps?.dehydratedState}>
+          <Head>
+            <title>Widl&#246;cher&apos;s</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          </Head>
+          <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
+            <MantineProvider
+              withGlobalStyles
+              withNormalizeCSS
+              theme={{
+                colorScheme: colorScheme,
+                primaryColor: 'gray'
+              }}
+            >
+              <SuperTokensWrapper>
+                <Component {...pageProps} />
+                {process.env.NODE_ENV === 'development' && <ReactQueryDevtools />}
+              </SuperTokensWrapper>
+            </MantineProvider>
+          </ColorSchemeProvider>
+        </Hydrate>
+      </QueryClientProvider>
     </>
   );
 }
 
-App.getInitialProps = ({ ctx }: { ctx: GetServerSidePropsContext }) => ({
+CustomApp.getInitialProps = ({ ctx }: { ctx: GetServerSidePropsContext }) => ({
   // get color scheme from cookie
   colorScheme: getCookie('color-scheme', ctx) || 'light'
 });
 
-export default App;
+export default CustomApp;

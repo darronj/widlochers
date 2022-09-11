@@ -9314,7 +9314,7 @@ export type UpcomingOrdersQueryVariables = Exact<{
 }>;
 
 
-export type UpcomingOrdersQuery = { __typename?: 'query_root', orders: Array<{ __typename?: 'orders', customer_id: number, date_needed?: string | null, status: Order_Status_Values_Enum, payment_status?: string | null, customer: { __typename?: 'customers', name?: string | null, phone: string, email?: string | null }, details: Array<{ __typename?: 'order_details', id: number, options?: Record<string, any> | null, comment?: string | null, price: number, product: { __typename?: 'products', name: string } }> }> };
+export type UpcomingOrdersQuery = { __typename?: 'query_root', orders: Array<{ __typename?: 'orders', comments?: string | null, customer_id: number, date_needed?: string | null, id: number, payment_status?: string | null, status: Order_Status_Values_Enum, customer: { __typename?: 'customers', email?: string | null, first_name: string, id: number, last_name: string, name?: string | null, phone: string }, details: Array<{ __typename?: 'order_details', comment?: string | null, id: number, options?: Record<string, any> | null, order_id: number, price: number, product_id: number, product: { __typename?: 'products', name: string } }> }> };
 
 export type ProductFieldsFragment = { __typename?: 'products', alias?: string | null, created_at: string, id: number, name: string, product_type_id?: number | null, updated_at: string };
 
@@ -9546,27 +9546,21 @@ export const UpcomingOrdersDocument = gql`
     where: {date_needed: {_gt: $date}, status: {_neq: DELIVERED}}
     order_by: {date_needed: asc}
   ) {
-    customer_id
+    ...OrderFields
     customer {
-      name
-      phone
-      email
+      ...CustomerFields
     }
-    date_needed
     details {
-      id
+      ...OrderDetailFields
       product {
         name
       }
-      options
-      comment
-      price
     }
-    status
-    payment_status
   }
 }
-    `;
+    ${OrderFieldsFragmentDoc}
+${CustomerFieldsFragmentDoc}
+${OrderDetailFieldsFragmentDoc}`;
 export const ProductsDocument = gql`
     query products {
   products {

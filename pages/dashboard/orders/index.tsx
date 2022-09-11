@@ -1,12 +1,13 @@
 import { Container, List, Table, Title } from '@mantine/core';
 import moment from 'moment';
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { ThirdPartyEmailPasswordAuth } from 'supertokens-auth-react/recipe/thirdpartyemailpassword';
 import supertokensNode from 'supertokens-node';
 import Session from 'supertokens-node/recipe/session';
 import WShell from '../../../components/Layout/Layout';
 import { backendConfig } from '../../../config/backendConfig';
+import { bakeryClient } from '../../../lib/bakery';
 
 export async function getServerSideProps(context) {
   // this runs on the backend, so we must call init on supertokens-node SDK
@@ -24,8 +25,11 @@ export async function getServerSideProps(context) {
     }
   }
 
+  const date = new Date().toISOString();
+  const { orders } = await bakeryClient.upcomingOrders({ date });
+
   return {
-    props: { userId: session.getUserId() }
+    props: { userId: session.getUserId(), orders }
   };
 }
 
@@ -37,29 +41,24 @@ export default function ProtectedOrders(props) {
   );
 }
 
-function Orders({ userId }) {
-  const [orders, setOrders] = useState([]);
-  useEffect(() => {
-    fetch('/api/orders/upcoming')
-      .then((res) => res.json())
-      .then((o) => {
-        setOrders(o.orders);
-      });
-  }, []);
-
-  const rows = orders.map((element) => (
-    <tr key={element.id}>
-      <td>{element.date_needed}</td>
-      <td>{moment(element?.date_needed).fromNow()}</td>
-      <td>{element.customer.name}</td>
+function Orders({ userId, orders }) {
+  const date = new Date().toISOString();
+  //console.log(data);
+  
+  
+  const rows = orders.map((order) => (
+    <tr key={order.id}>
+      <td>{order.date_needed}</td>
+      <td>{moment(order?.date_needed).fromNow()}</td>
+      <td>{order.customer.name}</td>
       <td>
         <List>
-          {element.details?.map((item, i) => (
+          {order.details?.map((item, i) => (
             <List.Item key={i}>{item.product.name}</List.Item>
           ))}
         </List>
       </td>
-      <td>{element.status}</td>
+      <td>{order.status}</td>
     </tr>
   ));
 

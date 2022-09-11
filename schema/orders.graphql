@@ -59,23 +59,15 @@ query upcomingOrders($date: date!) {
     where: { date_needed: { _gt: $date }, status: { _neq: DELIVERED } }
     order_by: { date_needed: asc }
   ) {
-    customer_id
+    ...OrderFields
     customer {
-      name
-      phone
-      email
+      ...CustomerFields
     }
-    date_needed
     details {
-      id
+      ...OrderDetailFields
       product {
         name
       }
-      options
-      comment
-      price
     }
-    status
-    payment_status
   }
 }

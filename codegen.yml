@@ -1,9 +1,9 @@
 overwrite: true
 schema:
-  - '${NEXT_PUBLIC_GRAPH_URL}': #http://157.230.203.183:8080/v1/graphql:
+  - '${NEXT_PUBLIC_GRAPH_URL}':
       headers:
         content-type: application/json
-        x-hasura-admin-secret: '${ADMIN_SECRET_KEY}' #cheesecake4life
+        x-hasura-admin-secret: '${ADMIN_SECRET_KEY}'
 documents: "./schema/**/*.graphql"
 generates:
   # types.ts:
