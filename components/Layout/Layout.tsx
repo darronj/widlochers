@@ -1,8 +1,4 @@
 /* eslint-disable comma-dangle */
-import { NextLink } from '@mantine/next';
-import { MdDashboard, MdLogout, MdSettings } from 'react-icons/md';
-import { signOut } from 'supertokens-auth-react/recipe/thirdpartyemailpassword';
-
 import {
   Affix,
   AppShell,
@@ -21,9 +17,11 @@ import {
   useMantineTheme
 } from '@mantine/core';
 import { useWindowScroll } from '@mantine/hooks';
+import { NextLink } from '@mantine/next';
 import Link from 'next/link';
 import { PropsWithChildren, ReactElement, useState } from 'react';
-import { MdArrowUpward } from 'react-icons/md';
+import { MdArrowUpward, MdDashboard, MdLogout, MdSettings } from 'react-icons/md';
+import { signOut } from 'supertokens-auth-react/recipe/thirdpartyemailpassword';
 import Brand from '../Brand/Brand';
 import { ColorSchemeToggle } from '../ColorSchemeToggle/ColorSchemeToggle';
 
@@ -88,6 +86,13 @@ const WShell = ({ aside, children, footer, navbar, ...props }) => {
                 <a>
                   <Title order={4} pt="xs">
                     Orders
+                  </Title>
+                </a>
+              </Link>
+              <Link href="/dashboard/customers" passHref>
+                <a>
+                  <Title order={4} pt="xs">
+                    Customers
                   </Title>
                 </a>
               </Link>
