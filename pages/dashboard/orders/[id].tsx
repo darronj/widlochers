@@ -66,7 +66,7 @@ function OrderDetails({ userId, id }) {
   return (
     <>
       <Head>
-        <title>Calendar</title>
+        <title>Order {id} - Dashboard</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <WShell aside={undefined} footer={undefined} navbar={undefined}>

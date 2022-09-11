@@ -56,7 +56,7 @@ function Customers({ userId, customers }) {
   return (
     <>
       <Head>
-        <title>Calendar</title>
+        <title>Customers - Dashboard</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <WShell aside={undefined} footer={undefined} navbar={undefined}>
