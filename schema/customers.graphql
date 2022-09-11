@@ -1,0 +1,36 @@
+fragment CustomerFields on customers {
+  email
+  first_name
+  id
+  last_name
+  name
+  phone
+}
+query customers($where: customers_bool_exp = {}) {
+  customers(where: $where) {
+    ...CustomerFields
+    orders_aggregate {
+      aggregate {
+        count
+      }
+    }
+  }
+}
+
+mutation insertCustomer($data: customers_insert_input!) {
+  insert_customers_one(object: $data) {
+    ...CustomerFields
+  }
+}
+
+mutation updateCustomer($id: Int!, $data: customers_set_input!) {
+  update_customers_by_pk(pk_columns: { id: $id }, _set: $data) {
+    ...CustomerFields
+  }
+}
+
+mutation deleteCustomer($id: Int!) {
+  delete_customers_by_pk(id: $id) {
+    ...CustomerFields
+  }
+}

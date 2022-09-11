@@ -1,0 +1,81 @@
+fragment OrderStatusFields on order_status_values {
+  value
+  comment
+}
+fragment OrderFields on orders {
+  comments
+  customer_id
+  date_needed
+  id
+  payment_status
+  status
+}
+
+fragment FullOrderFields on orders {
+  ...OrderFields
+  customer {
+    ...CustomerFields
+  }
+  details {
+    ...OrderDetailFields
+    product {
+      ...ProductFields
+    }
+  }
+  customer {
+    ...CustomerFields
+  }
+}
+
+query orders($where: orders_bool_exp = {}) {
+  orders {
+    ...FullOrderFields
+  }
+}
+
+mutation insertOrder($data: orders_insert_input!) {
+  insert_orders_one(object: $data) {
+    ...OrderFields
+  }
+}
+
+mutation updateOrder($id: Int!, $data: orders_set_input!) {
+  update_orders_by_pk(pk_columns: { id: $id }, _set: $data) {
+    ...OrderFields
+  }
+}
+
+mutation deleteOrder($id: Int!) {
+  delete_orders_by_pk(id: $id) {
+    ...OrderFields
+    customer {
+      ...CustomerFields
+    }
+  }
+}
+
+query upcomingOrders($date: date!) {
+  orders(
+    where: { date_needed: { _gt: $date }, status: { _neq: DELIVERED } }
+    order_by: { date_needed: asc }
+  ) {
+    customer_id
+    customer {
+      name
+      phone
+      email
+    }
+    date_needed
+    details {
+      id
+      product {
+        name
+      }
+      options
+      comment
+      price
+    }
+    status
+    payment_status
+  }
+}

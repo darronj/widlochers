@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "codegen": "graphql-codegen",
     "dev": "next dev",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate": "graphql-codegen --require dotenv/config --config codegen.yml",
+    "prebuild": "npm run generate",
+    "predev": "DOTENV_CONFIG_PATH=\"./.env.local\" yarn generate"
   },
   "dependencies": {
     "@emotion/react": "^11.10.4",
@@ -22,7 +24,6 @@
     "cookies-next": "^2.1.1",
     "dayjs": "^1.11.5",
     "graphql": "^16.6.0",
-    "graphql-codegen": "^0.4.0",
     "graphql-request": "^5.0.0",
     "moment": "^2.29.4",
     "next": "12.2.5",
@@ -31,13 +32,20 @@
     "react-icons": "^4.4.0",
     "stylis": "^4.1.1",
     "stylis-plugin-rtl": "^2.1.1",
-    "supertokens-auth-react": "^0.24.8",
+    "supertokens-auth-react": "^0.25.0",
     "supertokens-node": "^11.3.0"
   },
   "devDependencies": {
     "@babel/core": "7.18.13",
+    "@graphql-codegen/cli": "^2.12.0",
+    "@graphql-codegen/typescript": "^2.7.3",
+    "@graphql-codegen/typescript-operations": "^2.5.0",
+    "@graphql-codegen/typescript-graphql-request": "^4.5.4",
+    "@types/node": "^18.7.16",
     "eslint": "8.23.0",
     "eslint-config-next": "12.2.5",
+    "graphql-tag": "^2.12.6",
+    "ts-node": "^10.9.1",
     "typescript": "4.3.5"
   }
 }

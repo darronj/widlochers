@@ -40,7 +40,7 @@ export default function ProtectedOrders(props) {
 function Orders({ userId }) {
   const [orders, setOrders] = useState([]);
   useEffect(() => {
-    fetch('/api/reservations')
+    fetch('/api/orders/upcoming')
       .then((res) => res.json())
       .then((o) => {
         setOrders(o.orders);

@@ -1,0 +1,32 @@
+fragment OrderDetailFields on order_details {
+  comment
+  id
+  options
+  order_id
+  price
+  product_id
+}
+
+query orderDetails($where: order_details_bool_exp = {}) {
+  order_details(where: $where) {
+    ...OrderDetailFields
+  }
+}
+
+mutation insertOrderDetail($data: order_details_insert_input!) {
+  insert_order_details_one(object: $data) {
+    ...OrderDetailFields
+  }
+}
+
+mutation updateOrderDetail($id: Int!, $data: order_details_set_input!) {
+  update_order_details_by_pk(pk_columns: { id: $id }, _set: $data) {
+    ...OrderDetailFields
+  }
+}
+
+mutation deleteOrderDetail($id: Int!) {
+  delete_order_details_by_pk(id: $id) {
+    ...OrderDetailFields
+  }
+}

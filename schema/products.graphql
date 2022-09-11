@@ -1,0 +1,31 @@
+fragment ProductFields on products {
+  alias
+  created_at
+  id
+  name
+  product_type_id
+  updated_at
+}
+query products {
+  products {
+    ...ProductFields
+  }
+}
+
+mutation insertProduct($data: products_insert_input!) {
+  insert_products_one(object: $data) {
+    ...ProductFields
+  }
+}
+
+mutation updateProduct($id: Int!, $data: products_set_input!) {
+  update_products_by_pk(pk_columns: { id: $id }, _set: $data) {
+    ...ProductFields
+  }
+}
+
+mutation deleteProduct($id: Int!) {
+  delete_products_by_pk(id: $id) {
+    ...ProductFields
+  }
+}

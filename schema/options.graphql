@@ -1,0 +1,30 @@
+fragment ProductOptionFields on options {
+  id
+  name
+  description
+  price
+}
+
+query options {
+  options {
+    ...ProductOptionFields
+  }
+}
+
+mutation insertProductOption($data: options_insert_input!) {
+  insert_options_one(object: $data) {
+    ...ProductOptionFields
+  }
+}
+
+mutation updateProductOption($id: Int!, $data: options_set_input!) {
+  update_options_by_pk(pk_columns: { id: $id }, _set: $data) {
+    ...ProductOptionFields
+  }
+}
+
+mutation deleteProductOption($id: Int!) {
+  delete_options_by_pk(id: $id) {
+    ...ProductOptionFields
+  }
+}

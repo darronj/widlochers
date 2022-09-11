@@ -1,25 +1,44 @@
 overwrite: true
 schema:
-  - 'http://157.230.203.183:8080/v1/graphql':
+  - '${NEXT_PUBLIC_GRAPH_URL}': #http://157.230.203.183:8080/v1/graphql:
       headers:
-        x-hasura-admin-secret: "cheesecake4Life"
-documents: generated/*.graphql
+        content-type: application/json
+        x-hasura-admin-secret: '${ADMIN_SECRET_KEY}' #cheesecake4life
+documents: "./schema/**/*.graphql"
 generates:
-  types.ts:
-    plugins:
-      - typescript
-  ./libs/graphClient.ts:
+  # types.ts:
+  #   plugins:
+  #     - typescript
+  ./generated/graphClient.ts:
     plugins:
       - typescript
       - typescript-operations
       - typescript-graphql-request
+    config:
+      preResolveTypes: true
+      skipTypename: false
+      withHooks: false
+      withHOC: false
+      withComponent: false
+      enumsAsTypes: true
+      constEnums: true
+      scalars:
+        JSON: 'Record<string, any>'
+        _int4: number
+        _int8: number
+        _text: string
+        _uuid: string
+        bigint: bigint
+        date: string
+        interval: string
+        json: 'Record<string, any>'
+        jsonb: 'Record<string, any>'
+        lquery: string
+        ltree: string
+        ltextquery: string
+        money: number
+        timestamptz: string
+        numeric: number
+        uuid: string
 
-config:
-  preResolveTypes: true
-  skipTypename: false
-  withHooks: false
-  withHOC: false
-  withComponent: false
-  enumsAsTypes: true
-  constEnums: true
 
