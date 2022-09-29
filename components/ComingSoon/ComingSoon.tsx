@@ -12,7 +12,7 @@ function ComingSoon() {
         objectFit="cover"
         objectPosition="center"
       />
-      <h1 className={styles.landingText}>Baking now, ready soon!</h1>
+      <h1 className={styles.landingText}>Baking now, ready sooner!</h1>
     </div>
   );
 }
